@@ -19,26 +19,28 @@ public class MainWithSearch {
         System.out.println("Enter a movie to read: ");
         String search = reading.nextLine();
         String address = "http://www.omdbapi.com/?t=" + search + "&apikey=c070c4bb";
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(address))
-                .build();
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        String json = response.body();
-        System.out.println(json);
-
-
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-
-        TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
-        System.out.println(myTitleOmdb);
         try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(address))
+                    .build();
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+            String json = response.body();
+            System.out.println(json);
+
+
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+
+            TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
+            System.out.println(myTitleOmdb);
+
             Title myTitle = new Title(myTitleOmdb);
             System.out.println("////////////////////////////////");
             System.out.println(myTitle);
         } catch(NumberFormatException e){
+            System.out.println(e.getMessage());
+        } catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
