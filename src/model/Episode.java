@@ -1,6 +1,6 @@
 package model;
 
-import Calculations.Sortable;
+import calculations.Sortable;
 
 public class Episode implements Sortable {
 

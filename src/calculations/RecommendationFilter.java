@@ -1,6 +1,4 @@
-package Calculations;
-
-import java.util.SortedMap;
+package calculations;
 
 public class RecommendationFilter {
 
