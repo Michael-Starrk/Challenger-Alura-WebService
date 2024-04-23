@@ -1,2 +1,5 @@
-package Calculations;public class Sortable {
+package Calculations;
+
+public interface Sortable {
+    int getClassification();
 }
