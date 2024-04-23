@@ -34,9 +34,13 @@ public class MainWithSearch {
 
         TitleOmdb myTitleOmdb = gson.fromJson(json, TitleOmdb.class);
         System.out.println(myTitleOmdb);
-        Title myTitle = new Title(myTitleOmdb);
-        System.out.println("////////////////////////////////");
-        System.out.println(myTitle);
+        try{
+            Title myTitle = new Title(myTitleOmdb);
+            System.out.println("////////////////////////////////");
+            System.out.println(myTitle);
+        } catch(NumberFormatException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }
